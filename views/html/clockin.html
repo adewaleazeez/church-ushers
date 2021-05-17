@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+
+    <title>Church Ninja v1.0</title>
+    
+    <!-- ========== Css Files ========== -->
+    <link href="css/root.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+    <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+    <!-- <link rel="stylesheet" href="dist/css/bootstrap.min.css"> -->
+
+    <!-- <script src="dist/js/bootstrap.min.js"></script> -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <script type="text/javascript" > 
+        
+        $("#alert-target").click(function () {
+            toastr["info"]("I was launched via jQuery!")
+        });
+    
+    </script>
+
+    <style>
+        td, th {
+            white-space: nowrap;
+            /* overflow: hidden; */
+            
+                      
+        }
+
+        /* @import "compass/css3";
+
+        body{
+        padding: 50px;
+        } */
+    </style>
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="index.html" class="logo">Church Ninja v1.0</a>
+    </div>
+    <!-- End App Logo -->
+    <h1 class="text-center"> Member Clock-IN </h1>
+
+     
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+        <ul class="sidebar-panel nav">
+                <li class="sidetitle" > MAIN </li>
+                
+                <li  class='setup'><a href="#"><span class="icon color9"><i class=""></i></span>Front Office<span class="caret"></span></a>
+                  <ul>
+                    <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>Member Setup</a></li>     
+                    <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-sign-in"></i></span>Clock-IN<span class="label label-default"></span></a></li>
+                    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-qrcode"></i></span>Allocate<span class="label label-default"></span></a></li>
+                    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-building"></i></span>Setup new wings<span class="label label-default"></span></a></li>
+                    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-users"></i></span>Setup new Group<span class="label label-default"></span></a></li>
+                    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-user"></i></span>Setup new Unit<span class="label label-default"></span></a></li>
+                    <li class='questionaire'><a href="allocationAI.html"><span class="icon color6"><i class="fa fa-location-arrow"></i></span> Allocation AI<span class="label label-default"></span></a></li>
+                  </ul>  
+                </li>
+              
+                <li  class='report'><a href="#"><span class="icon color9"><i class=""></i></span> Report Module<span class="caret"></span></a>
+                  <ul class="">
+                      <li ><a href="timetable.html"><span class="icon color8 "><i class="fa fa-calendar" style=""></i></span> Time Tabler</a></li>
+                  
+                    <li ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" style=""></i></span>Raw Data</a></li>
+                    <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+                  </ul>
+                </li>
+                
+                <!-- <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+                <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-excel-o" aria-hidden="true"></i></span>Import Excel Data</a></li>      -->
+                <li><a href="/"><span class="icon color8"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Exit Application</a></li>     
+              
+              </ul>
+               </div>
+
+
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTENT -->
+<div class="content">
+
+  
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-fluid">
+  
+  <!-- Start Fifth Row -->
+  <div class="row">
+
+        <!-- Start Panel -->
+        <div class="" style="">
+            <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
+            <input type="hidden" name="usermail" id="usermail" >
+            <input type="hidden" name="newid" id="newid" >
+            <input type="hidden" name="timerr" id="timerr" > 
+            <!-- <div class="panel panel-default" style="background-color: whitesmoke; overflow: scroll">
+                <div class="panel-h" style="background-color: whitesmoke" >
+                    <p class='' style="text-align: center; font-size:  20px; background-color: transparent; color: black" > Member Clock-IN. </p>
+                    <p class="guest">  </p>
+                    <p> </p>
+                
+               
+                </div> -->
+                    <!-- <img src="" id="img" class="form-control" alt="" height="250" width="200"> -->
+                <div class="panel-body">
+                    <!-- <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                            Processing
+                        </div>
+                    </div> -->
+
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">Processing</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                        <label for="projectid" class="col-md-12" > Enter Barcode </label>
+                        <input type="text" id="code" autocomplete="off" class="form-control col-md-12" onchange="getDetails(this.value)" value="0000000">                        
+ 
+                        <button class="btn btn-primary btn-sm ops hidden" type="button" onclick="allocatemember()" > Allocate Member </button>
+                        <!-- <button class="btn btn-success btn-sm" type="button" onclick="tableToExcel('table', 'Excel Table')" > Export Excel </button> -->
+                        
+                        <button class="btn btn-success btn-sm" type="button" onclick="closeDialog()"> close </button>
+
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <button class="btn btn-primary btn-sm ops" type="button" onclick="allocatemember()" > Allocate Member </button>
+                         <button class="btn btn-success btn-sm" type="button" onclick="closeDialog()"> close </button>
+
+                    </div> -->
+
+                    <!-- <div class="alert alert-success clearfix col-md-12" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 id='alerts'></h3>
+                    
+                    </div> -->
+
+                    <div class="container col-md-6" >
+                            <img src="" id="img" class="img img-rounded" alt="" width="250" height="200">
+                        <!-- <img src="" id="img" class="img img-rounded" alt="" width="304" height="236"> -->
+                    </div>
+
+                    <div class="col-md-12 table table-bordered "  style='overflow: scroll'  >
+     
+                        <div id='table' class="table table-bordered col-md-12">
+                            
+                        </div>
+                        
+
+                    </div>
+
+                    
+    
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="pushtoprint"  style="width: 1000px">
+                <div class="modal-dialog modal-lg" title="Posting Preview" style="width: 900px">
+                    <div class="modal-content">
+                        <input type="hidden" class="refnos" >
+                        <input type="hidden" id="quest" >
+                        <!-- <input type="hidden" id="currentuser" > -->
+        
+                        <div class="modal-header" style="padding: 15px 40px; background-color: antiquewhite; color: #fff; font-weight: bolder">
+                            <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                            <h4 style="color: #000; text-align: center" ><span>Posting Preview</h4>
+                        </div>
+        
+                        <div class="modal-body" style="height: 380px; background-color: whitesmoke">
+                            <div id='postings'></div>
+                        </div>
+        
+                        <div class="modal-footer" style="background-color: antiquewhite">
+                            <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="PrintPosting()" id="pusher" ><i class="fa fa-printer" ></i>Print Posting</button>
+                            <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="PrintDiv()" id="pusher" ><i class="fa fa-printer" ></i>Print Posting 2</button>
+                            <button type="button" class="btn btn-danger btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- End Panel --> 
+
+
+
+</div> <!-- End Fifth Row -->
+ 
+
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<!-- ================================================
+Data Tables
+================================================ -->
+<script src="js/datatables/datatables.min.js"></script>
+
+<script src="js/sweet-alert/sweet-alert.min.js"></script>
+
+
+
+<script>
+    var usermail = localStorage.getItem('userid');
+    $('#usermail').val(usermail);
+
+    var check = (id)=>{
+        alert('Dele: '+ id);
+    };
+
+    var closeDialog = () => {
+        window.location = 'board.html';
+    };
+
+
+    var PrintDiv = (id) => {
+        var data=document.getElementById('postings').innerHTML;
+        var myWindow = window.open('', 'my div', 'height=500,width=300');
+        myWindow.document.write('<html><head><title>my div</title>');
+        /*optional stylesheet*/ //myWindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+        myWindow.document.write('</head><body >');
+        myWindow.document.write(data);
+        myWindow.document.write('</body></html>');
+        myWindow.document.close(); // necessary for IE >= 10
+
+        myWindow.onload=function(){ // necessary if the div contain images
+
+            myWindow.focus(); // necessary for IE >= 10
+            myWindow.print();
+            myWindow.close();
+        };
+    }
+     
+    var PrintPosting = () => {
+        var printContents = document.getElementById('postings').innerHTML;
+//          alert(printContents)
+          var originalContents = document.body.innerHTML;
+          document.body.innerHTML = printContents;
+          window.print();
+          document.body.innerHTML = originalContents;
+
+    }
+    var getDetails = (id) => {
+        $(".progress").show('slow'); 
+        // alert(id)
+        $.ajax({
+            url: "/getmemberDetails",
+            data: "id="+id,
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                // alert(data.status)
+                if(data.status=='success'){
+                    var array = data.str;
+                    console.log(array)
+                    console.log(data.timer)
+                    var str = "<table class='table table-bordered' >";
+                    str += "<tr><td>Full Name: </td> <td>" +array[0].fname +" "+array[0].lname + "</td></tr>";
+                    str += "<tr><td>Group    : </td> <td>" +array[0].group_id + "</td></tr>";
+                    str += "<tr><td>Unit    : </td> <td>" +array[0].unit_id + "</td></tr>";
+                    str += "<tr><td>Phone    : </td> <td>" +array[0].telephone + "</td></tr>";
+                    str += "<tr><td>Time IN    : </td> <td>" +data.timer + "</td></tr>";
+                    str += "</table>";
+
+                    $('#newid').val(data.newid);
+                    $('#timerr').val(data.timer);
+                    $('#table').html(str);
+                    $('#img').attr('src', array[0].imagesURL);
+
+                    
+                    $("#code").focus();
+                    $("#code").select();
+
+                    $(".progress").hide('slow');
+
+                    allocatemember();
+                }
+                else
+                {
+                    $(".progress").hide('slow');
+
+                    console.log(data.error)
+                    alert(data.error)
+                    
+                }
+                
+
+                 
+            },
+            error: function(data) {
+                alert(data);
+            },
+            dataType: "json"
+        })
+
+    }
+
+    var allocatemember = () => {
+        var member = $('#code').val();
+        var newref = $('#newid').val();
+        var timer = $('#timerr').val();
+        // alert(member)
+        $.ajax({
+            url: "/allocatemember",
+            cache: false,
+            data:"member="+member+"&newref="+newref+"&timer="+timer,
+            type: "GET",
+            success: function(data) {
+                console.log(data);
+     
+                if(data.status=='success'){
+                    /**SHOW the modal dialog box as print preview */
+                    $("#pushtoprint").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    
+                    $('#postings').html(data.result)
+                }else{
+                    alert(data.result)
+                }
+                
+            },
+            error: function(err) {
+                console.log(err)
+            },
+            dataType: "JSON"
+        })
+    }
+
+      
+
+    $(document).ready(function() {
+        $('#code').focus();
+        $('#code').select();
+
+        $(".progress").hide();
+
+        var name = localStorage.getItem('name');
+        var user = localStorage.getItem('userid');
+        var role = localStorage.getItem('roleId');
+
+        $('.guest').html("<strong style='font-size: 20' >Welcome, "+ name+" </strong>");
+        
+        if(role=='client'){
+            $('.ops').addClass('hidden');
+            $('.ops2').addClass('hidden');
+
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+            
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }else if(role=='manager'){
+            $('.ops').addClass('hidden');
+            // $('.ops').addClass('hidden');
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }
+
+        $('.alert').hide();
+
+        $('#example0').DataTable();
+        var user = $('#usermail').val();
+
+        $.ajax({
+            url: "/getprojectslist",
+            data: "user="+user+"&role="+role,
+            type: "get",
+            cache: false,
+            success: function(data){
+                // alert(data)
+                $('#projectid').html(data);
+
+                //get my raw data from clients on the currently runncing project
+                // alert(user)
+                $.ajax({
+                    url: "/rawdata",
+                    data: "user="+user,
+                    type: "GET",
+                    cache: false,
+                    success: function(data){
+                        $('#result').html(data);
+
+                        console.log(JSON.stringify(data))
+                    },
+                    error: function(data){
+                        // alert(data);
+                    },
+                    dataType: "text"
+                })
+            },
+            error: function(data){
+                // alert(data);
+            },
+            dataType: "text"
+        });
+
+        // socket.emit('rawdata', user);
+
+        // socket.on('data', (resp) => {
+
+        // })
+
+    });
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    var table = $('#example').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": 2 }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    } );
+ 
+    // Order by the grouping
+    $('#example tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
+} );
+</script>
+
+
+
+</body>
+</html>
